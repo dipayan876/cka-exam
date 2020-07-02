@@ -22,41 +22,11 @@
     
     kubectl -n kube-system create serviceaccount tiller
     
-    .......................................................................................................
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  creationTimestamp: "2020-07-02T14:55:33Z"
-  name: tiller
-  namespace: kube-system
-  resourceVersion: "865854"
-  selfLink: /api/v1/namespaces/kube-system/serviceaccounts/tiller
-  uid: 100655ea-23c6-4caa-99af-3d54c763955c
-secrets:
-- name: tiller-token-mwvg4
-   .......................................................................................................
-
+ 
     kubectl create clusterrolebinding tiller \
      --clusterrole=cluster-admin \
      --serviceaccount=kube-system:tiller
-     ........................................................................................................
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  creationTimestamp: "2020-07-02T15:00:30Z"
-  name: tiller
-  resourceVersion: "866283"
-  selfLink: /apis/rbac.authorization.k8s.io/v1/clusterrolebindings/tiller
-  uid: 1da9691e-b91f-4ad1-acb1-c0ad087c4787
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-- kind: ServiceAccount
-  name: tiller
-  namespace: kube-system
-............................................................................................................     
+   
      
     helm init --service-account tiller
     
